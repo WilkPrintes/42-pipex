@@ -8,11 +8,11 @@ INCLUDE		:=	$(foreach directory, $(HEADER_DIR), -I $(directory))
 
 SRC_DIR		:= ./
 
-SRC_FILE	:=  pipex.c pipex_utils.c
+SRC_FILE	:=  pipex.c pipex_utils.c ft_split.c ft_strdup.c
 
 SRC			:=	$(foreach file, $(SRC_FILE), $(SRC_DIR)$(file))
 
-FLAGS 		:= -Wall -Wextra -Werror
+FLAGS 		:= 
 
 all: $(NAME)
 
@@ -28,6 +28,9 @@ re: fclean all
 
 $(OBJ_DIR):
 	@mkdir -p $@
+
+test: fclean
+	@$(CC) -g test.c pipex_utils.c ft_split.c ft_strdup.c-o $@ $(INCLUDE) $(FLAGS)
 
 norma:
 	norminette ./

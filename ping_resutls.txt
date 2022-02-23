@@ -1,0 +1,30 @@
+.
+..
+.git
+.gitignore
+Makefile
+ft_split.c
+ft_strdup.c
+ping_resutls.txt
+pipex
+pipex.c
+pipex.h
+pipex_utils.c
+test
+test.c
+vgcore.4488
+vgcore.6844
+6 Feb 20 04:31 .git
+-rw-rw-r--  1 coder coder      16 Feb 23 00:03 .gitignore
+-rw-rw-r--  1 coder coder     636 Feb 22 19:49 Makefile
+-rw-rw-r--  1 coder coder    1705 Feb 23 00:02 ft_split.c
+-rw-rw-r--  1 coder coder    1250 Feb 23 00:02 ft_strdup.c
+-rwxrwxr-x  1 coder coder     905 Feb 23 01:32 ping_resutls.txt
+-rwxrwxr-x  1 coder coder   21048 Feb 23 00:21 pipex
+-rw-rw-r--  1 coder coder    1644 Feb 23 00:22 pipex.c
+-rw-rw-r--  1 coder coder    1164 Feb 23 00:02 pipex.h
+-rw-rw-r--  1 coder coder    1816 Feb 23 00:02 pipex_utils.c
+-rwxrwxr-x  1 coder coder   20496 Feb 22 19:50 test
+-rw-rw-r--  1 coder coder    1076 Feb 22 19:50 test.c
+-rw-------  1 coder coder 2396160 Feb 22 16:57 vgcore.4488
+-rw-------  1 coder coder 6590464 Feb 22 17:42 vgcore.6844

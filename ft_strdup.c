@@ -1,22 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wprintes < wprintes@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/17 22:40:19 by wprintes          #+#    #+#             */
-/*   Updated: 2022/02/22 23:40:38 by wprintes         ###   ########.fr       */
+/*   Created: 2022/02/22 16:30:52 by wprintes          #+#    #+#             */
+/*   Updated: 2022/02/23 00:02:50 by wprintes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <sys/wait.h>
-#include <fcntl.h>
+#include "pipex.h"
 
-size_t	ft_strlen(const char *s);
-char	*ft_strjoin(char *s1, char const *s2);
-char    **ft_split(char *buffer, char separator);
-char    *ft_strdup(char *buffer, int stop);
+char *ft_strdup(char *buffer, int stop)
+{
+    int index;
+    char *result;
+
+    if (ft_strlen(buffer) < stop)
+        return (NULL);
+    result = malloc (sizeof(char) * (stop + 1));
+    index = 0;
+    while (index < stop)
+    {
+        result[index] = buffer[index];
+        index++;
+    }
+    result[index] = '\0';
+    return (result);
+}
