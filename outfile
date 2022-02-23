@@ -1,0 +1,5 @@
+-rwxrwxr-x 1 coder coder 21152 Feb 23 05:42 pipex
+-rw-rw-r-- 1 coder coder  1907 Feb 23 05:41 pipex.c
+-rw-rw-r-- 1 coder coder  1164 Feb 23 00:02 pipex.h
+-rw-rw-r-- 1 coder coder  1816 Feb 23 00:02 pipex_utils.c
+-rwxrwxr-x 1 coder coder 20496 Feb 22 19:50 test
