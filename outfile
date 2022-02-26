@@ -1,5 +1,15 @@
--rwxrwxr-x 1 coder coder 21152 Feb 23 05:42 pipex
--rw-rw-r-- 1 coder coder  1907 Feb 23 05:41 pipex.c
--rw-rw-r-- 1 coder coder  1164 Feb 23 00:02 pipex.h
--rw-rw-r-- 1 coder coder  1816 Feb 23 00:02 pipex_utils.c
--rwxrwxr-x 1 coder coder 20496 Feb 22 19:50 test
+2
+wxrwxr-x  4 coder coder  4096 Feb 26 00:00 .
+drwxr-xr-x 31 coder coder  4096 Feb 25 19:44 ..
+drwxrwxr-x  8 coder coder  4096 Feb 23 06:15 .git
+-rw-rw-r--  1 coder coder    28 Feb 23 04:26 .gitignore
+-rw-rw-r--  1 coder coder   582 Feb 23 17:09 Makefile
+-rw-rw-r--  1 coder coder  1705 Feb 23 00:02 ft_split.c
+-rw-rw-r--  1 coder coder  1250 Feb 23 00:02 ft_strdup.c
+-rw-rw-r--  1 coder coder   107 Feb 24 18:58 infile
+-rw-rw-r--  1 coder coder   274 Feb 26 00:02 outfile
+-rwxrwxr-x  1 coder coder 21312 Feb 26 00:00 pipex
+drwxrwxr-x  4 coder coder  4096 Feb 25 19:51 pipex-tester
+-rw-rw-r--  1 coder coder  2460 Feb 26 00:00 pipex.c
+-rw-rw-r--  1 coder coder  1164 Feb 23 00:02 pipex.h
+-rw-rw-r--  1 coder coder  1816 Feb 23 00:02 pipex_utils.c

@@ -29,8 +29,8 @@ re: fclean all
 $(OBJ_DIR):
 	@mkdir -p $@
 
-test: fclean
-	@$(CC) -g test.c pipex_utils.c ft_split.c ft_strdup.c-o $@ $(INCLUDE) $(FLAGS)
+test: fclean re
+	make -C ./pipex-tester
 
 norma:
 	norminette ./
