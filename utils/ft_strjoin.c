@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_utils.c                                      :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wprintes < wprintes@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/20 03:17:21 by coder             #+#    #+#             */
-/*   Updated: 2022/02/23 00:02:46 by wprintes         ###   ########.fr       */
+/*   Created: 2021/09/21 17:14:11 by wprintes          #+#    #+#             */
+/*   Updated: 2022/02/26 17:06:50 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,4 @@ char	*join(char *s1_val, char *s2_val, char *result)
 	}
 	result[ft_strlen(s1_val) + counter] = '\0';
 	return (result);
-}
-
-size_t	ft_strlen(const char *s)
-{
-	int	counter;
-
-	counter = 0;
-	while (s[counter] != '\0')
-	{
-		counter++;
-	}
-	return (counter);
 }

@@ -3,29 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wprintes < wprintes@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/22 16:30:52 by wprintes          #+#    #+#             */
-/*   Updated: 2022/02/23 00:02:50 by wprintes         ###   ########.fr       */
+/*   Created: 2021/09/18 17:20:45 by wprintes          #+#    #+#             */
+/*   Updated: 2022/02/26 17:08:06 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-char *ft_strdup(char *buffer, int stop)
+char	*ft_strdup(const char *src)
 {
-    int index;
-    char *result;
+	char	*result;
 
-    if (ft_strlen(buffer) < stop)
-        return (NULL);
-    result = malloc (sizeof(char) * (stop + 1));
-    index = 0;
-    while (index < stop)
-    {
-        result[index] = buffer[index];
-        index++;
-    }
-    result[index] = '\0';
-    return (result);
+	result = ft_calloc(sizeof(char), ft_strlen((char *)src) + 1);
+	if (!result)
+		return (NULL);
+	ft_strlcpy(result, src, ft_strlen((char *) src) + 1);
+	return (result);
 }
