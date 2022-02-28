@@ -6,7 +6,7 @@
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 22:40:19 by wprintes          #+#    #+#             */
-/*   Updated: 2022/02/28 01:40:26 by coder            ###   ########.fr       */
+/*   Updated: 2022/02/28 04:38:27 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <sys/wait.h>
 # include <fcntl.h>
+# include <string.h>
 
 typedef struct s_data
 {
@@ -29,6 +30,13 @@ typedef struct s_data
 	char		*cmd;
 	char		**command;
 }t_data;
+
+typedef struct s_path
+{
+	char	*temp;
+	char	**path;
+	char	*command;
+}t_path;
 
 void	ft_bzero(void *str, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
@@ -46,5 +54,6 @@ char	*get_path(char **envp);
 int		open_outfile(t_data *data, char **argv);
 int		validations(int argc, t_data *data, char **argv);
 int		open_files(t_data *data, char **argv);
+void	free_matrix(t_data *data);
 
 #endif
