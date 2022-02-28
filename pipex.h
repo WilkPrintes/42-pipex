@@ -6,15 +6,17 @@
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 22:40:19 by wprintes          #+#    #+#             */
-/*   Updated: 2022/02/27 03:52:48 by coder            ###   ########.fr       */
+/*   Updated: 2022/02/28 01:40:26 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <sys/wait.h>
-#include <fcntl.h>
+#ifndef PIPEX_H
+# define PIPEX_H
+# include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <sys/wait.h>
+# include <fcntl.h>
 
 typedef struct s_data
 {
@@ -23,7 +25,9 @@ typedef struct s_data
 	pid_t		fd[2];
 	pid_t		pid1;
 	pid_t		pid2;
-
+	pid_t		error;
+	char		*cmd;
+	char		**command;
 }t_data;
 
 void	ft_bzero(void *str, size_t n);
@@ -37,5 +41,10 @@ char	*ft_strdup(const char *src);
 char	*ft_strchr(const char *str, int c);
 char	*ft_strjoin(char *s1, char const *s2);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
-int     ft_strncmp(const char *str1, const char *str2, size_t n);
+int		ft_strncmp(const char *str1, const char *str2, size_t n);
+char	*get_path(char **envp);
+int		open_outfile(t_data *data, char **argv);
+int		validations(int argc, t_data *data, char **argv);
+int		open_files(t_data *data, char **argv);
 
+#endif

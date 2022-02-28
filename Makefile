@@ -8,7 +8,7 @@ INCLUDE		:=	$(foreach directory, $(HEADER_DIR), -I $(directory))
 
 SRC_DIR		:= ./
 
-SRC_FILE	:=  pipex.c
+SRC_FILE	:=  pipex.c pipex_utils.c
 
 SRC			:=	$(foreach file, $(SRC_FILE), $(SRC_DIR)$(file))
 
