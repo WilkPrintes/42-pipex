@@ -6,7 +6,7 @@
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 01:13:54 by coder             #+#    #+#             */
-/*   Updated: 2022/02/28 04:34:36 by coder            ###   ########.fr       */
+/*   Updated: 2022/03/13 01:13:48 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	open_outfile(t_data *data, char **argv)
 	data->outfile = open(argv[4], O_CREAT | O_RDWR | O_TRUNC, 0644);
 	if (data->outfile < 0)
 	{
-		ft_putstr_fd(strerror(data->outfile), 2);
+		perror("Error");
 		close(data->infile);
 		close(data->outfile);
 		return (EXIT_FAILURE);
@@ -43,7 +43,7 @@ int	open_outfile(t_data *data, char **argv)
 	data->error = access(argv[4], R_OK);
 	if (data->error < 0)
 	{
-		ft_putstr_fd(strerror(13), 2);
+		perror("Error");
 		close(data->outfile);
 		close(data->infile);
 		return (EXIT_FAILURE);
@@ -73,15 +73,15 @@ int	open_files(t_data *data, char **argv)
 	data->infile = open(argv[1], O_RDONLY);
 	if (data->infile < 0)
 	{
-		ft_putstr_fd(strerror(data->infile), 2);
-		close(data->infile);
+		perror("Error");
+		close(EXIT_FAILURE);
 		return (EXIT_FAILURE);
 	}
 	data->error = access(argv[1], R_OK);
 	if (data->error < 0)
 	{
-		ft_putstr_fd(strerror(13), 2);
-		close(data->infile);
+		perror("Error");
+		close(EXIT_FAILURE);
 		return (EXIT_FAILURE);
 	}
 	if (open_outfile(data, argv) != 0)

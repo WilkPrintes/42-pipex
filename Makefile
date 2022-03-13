@@ -38,7 +38,7 @@ $(OBJ_DIR):
 	@mkdir -p $@
 
 test: fclean re
-	rm -f outfile
+	@@rm -f outfile
 	make -C ./pipex-tester
 
 norma:

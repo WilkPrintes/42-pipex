@@ -6,7 +6,7 @@
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 22:39:41 by wprintes          #+#    #+#             */
-/*   Updated: 2022/02/28 04:44:22 by coder            ###   ########.fr       */
+/*   Updated: 2022/03/13 01:15:02 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,16 @@ int	main(int argc, char *argv[], char *envp[])
 	data.command = ft_split(argv[2], ' ');
 	data.cmd = path(envp, data.command[0]);
 	if (data.cmd == NULL)
-		return (error(&data));
-	data.error = command1(&data);
-	if (data.error != 0)
-		return (data.error);
+	{
+		ft_putstr_fd("command not found\n", 2);
+		free_matrix(&data);
+	}
+	else
+	{
+		data.error = command1(&data);
+		if (data.error != 0)
+			return (data.error);
+	}
 	data.command = ft_split(argv[3], ' ');
 	data.cmd = path(envp, data.command[0]);
 	if (data.cmd == NULL)
@@ -46,7 +52,7 @@ int	main(int argc, char *argv[], char *envp[])
 int	error(t_data *data)
 {
 	free_matrix(data);
-	ft_putstr_fd("comand not exist\n", 2);
+	ft_putstr_fd("command not exist\n", 2);
 	return (127);
 }
 
@@ -83,11 +89,11 @@ int	command2(t_data *data)
 		close(data->fd[0]);
 		close(data->fd[1]);
 		data->error = execve(data->cmd, data->command, NULL);
-		if (execve(data->cmd, data->command, NULL) == -1)
-		{
-			ft_putstr_fd(strerror(data->error), 2);
-			return (data->error);
-		}
+
+	}
+	else
+	{
+		printf("%d\n", data->error);
 	}
 	close(data->outfile);
 	close(data->fd[0]);
