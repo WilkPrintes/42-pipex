@@ -3,99 +3,77 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wprintes <wprintes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/28 01:13:54 by coder             #+#    #+#             */
-/*   Updated: 2022/03/13 01:13:48 by coder            ###   ########.fr       */
+/*   Created: 2022/03/14 00:10:32 by wprintes          #+#    #+#             */
+/*   Updated: 2022/03/14 15:13:03 by wprintes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-char	*get_path(char **envp)
+void	command(char *argv, char *envp[], t_data *data)
 {
+	data->cmd = ft_split(argv, ' ');
+	data->path = find_path(data->cmd[0], envp);
+	if (!data->path)
+	{
+		free_matriz(&data->cmd);
+		ft_putstr_fd("command not found\n", 2);
+		exit(127);
+	}
+	if (execve(data->path, data->cmd, envp) == -1)
+	{
+		free_matriz(&data->cmd);
+		free(data->path);
+		error();
+	}
+}
+
+char	*find_path(char *cmd, char *envp[])
+{
+	char	**paths;
+	char	*path;
 	int		i;
-	char	*temp;
+	char	*part_path;
 
 	i = 0;
-	while (envp[i] != NULL)
+	while (ft_strnstr(envp[i], "PATH", 4) == 0)
+		i++;
+	paths = ft_split(envp[i] + 5, ':');
+	i = 0;
+	while (paths[i])
 	{
-		if (ft_strncmp(envp[i], "PATH", 4) == 0)
+		part_path = ft_strjoin(paths[i], "/");
+		path = ft_strjoin(part_path, cmd);
+		free(part_path);
+		if (access(path, F_OK) == 0)
 		{
-			temp = ft_substr(envp[i], 5, ft_strlen(envp[i]));
-			break ;
+			free_matriz(&paths);
+			return (path);
 		}
+		free(path);
 		i++;
 	}
-	return (temp);
+	free_matriz(&paths);
+	return (NULL);
 }
 
-int	open_outfile(t_data *data, char **argv)
-{
-	data->outfile = open(argv[4], O_CREAT | O_RDWR | O_TRUNC, 0644);
-	if (data->outfile < 0)
-	{
-		perror("Error");
-		close(data->infile);
-		close(data->outfile);
-		return (EXIT_FAILURE);
-	}
-	data->error = access(argv[4], R_OK);
-	if (data->error < 0)
-	{
-		perror("Error");
-		close(data->outfile);
-		close(data->infile);
-		return (EXIT_FAILURE);
-	}
-	return (0);
-}
-
-int	validations(int argc, t_data *data, char **argv)
-{	
-	if (argc != 5)
-	{
-		ft_putstr_fd("Invalid Number of Parameters", 2);
-		return (EXIT_FAILURE);
-	}
-	if (open_files(data, argv) != 0)
-		return (EXIT_FAILURE);
-	if (pipe(data->fd) == -1)
-	{
-		ft_putstr_fd ("Error on opening pipe", 2);
-		return (EXIT_FAILURE);
-	}
-	return (0);
-}
-
-int	open_files(t_data *data, char **argv)
-{
-	data->infile = open(argv[1], O_RDONLY);
-	if (data->infile < 0)
-	{
-		perror("Error");
-		close(EXIT_FAILURE);
-		return (EXIT_FAILURE);
-	}
-	data->error = access(argv[1], R_OK);
-	if (data->error < 0)
-	{
-		perror("Error");
-		close(EXIT_FAILURE);
-		return (EXIT_FAILURE);
-	}
-	if (open_outfile(data, argv) != 0)
-		return (EXIT_FAILURE);
-	return (0);
-}
-
-void	free_matrix(t_data *data)
+void	free_matriz(char ***buffer)
 {
 	int	i;
 
 	i = 0;
-	while (data->command[i])
-		free (data->command[i++]);
-	free (data->command);
-	free (data->cmd);
+	if (!*buffer)
+		return ;
+	while (*(*buffer + i))
+		free(*(*buffer + i++));
+	free(*buffer);
+	*buffer = NULL;
+}
+
+void	error(void)
+{
+	perror("Error");
+	exit (EXIT_FAILURE);
 }

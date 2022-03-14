@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wprintes <wprintes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/17 22:40:19 by wprintes          #+#    #+#             */
-/*   Updated: 2022/02/28 04:38:27 by coder            ###   ########.fr       */
+/*   Created: 2022/03/13 16:58:34 by coder             #+#    #+#             */
+/*   Updated: 2022/03/14 15:14:56 by wprintes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,11 @@
 
 typedef struct s_data
 {
-	pid_t		infile;
-	pid_t		outfile;
-	pid_t		fd[2];
 	pid_t		pid1;
-	pid_t		pid2;
-	pid_t		error;
-	char		*cmd;
-	char		**command;
+	int			fd[2];
+	char		**cmd;
+	char		*path;
 }t_data;
-
-typedef struct s_path
-{
-	char	*temp;
-	char	**path;
-	char	*command;
-}t_path;
 
 void	ft_bzero(void *str, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
@@ -50,10 +39,10 @@ char	*ft_strchr(const char *str, int c);
 char	*ft_strjoin(char *s1, char const *s2);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 int		ft_strncmp(const char *str1, const char *str2, size_t n);
-char	*get_path(char **envp);
-int		open_outfile(t_data *data, char **argv);
-int		validations(int argc, t_data *data, char **argv);
-int		open_files(t_data *data, char **argv);
-void	free_matrix(t_data *data);
+char	*ft_strnstr(const char *s1, const char *s2, size_t n);
+void	command(char *argv, char *envp[], t_data *data);
+char	*find_path(char *cmd, char *envp[]);
+void	error(void);
+void	free_matriz(char ***buffer);
 
 #endif
